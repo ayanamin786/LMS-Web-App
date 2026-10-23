@@ -83,18 +83,18 @@ Additional libraries can be included when they are actually used in the project.
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/YOUR-USERNAME/YOUR-REPOSITORY.git
+git clone https://github.com/ayanamin786/LMS-Web-App.git
 ```
 
 ### 2. Open the Project
 
 ```bash
-cd YOUR-REPOSITORY
+cd LMS-Web-App
 ```
 
 ### 3. Run the Application
 
-Open `index.html` in your browser, or use the **Live Server** extension in Visual Studio Code.
+Open `signup.html` in your browser, or use the **Live Server** extension in Visual Studio Code.
 
 ### 4. Start Developing
 
@@ -120,16 +120,8 @@ Edit the HTML, CSS and JavaScript files to customize the interface and add new f
 - [ ] Backend integration, if required
 - [ ] Database integration, if required
 - [ ] Accessibility and performance improvements
+- [ ] And More
 
-## 📸 Screenshots
-
-Add screenshots of your actual application here.
-
-```md
-![LMS Homepage](assets/images/homepage.png)
-![LMS Login](assets/images/login.png)
-![LMS Dashboard](assets/images/dashboard.png)
-```
 
 ## 👨‍💻 Developer
 
@@ -141,7 +133,7 @@ Add screenshots of your actual application here.
 
 Building modern, responsive and interactive web experiences with HTML, CSS and JavaScript.
 
-<a href="https://github.com/YOUR-USERNAME">
+<a href="https://github.com/ayanamin786">
   <img src="https://img.shields.io/badge/GitHub-View%20Profile-181717?style=for-the-badge&logo=github" alt="GitHub Profile" />
 </a>
 
