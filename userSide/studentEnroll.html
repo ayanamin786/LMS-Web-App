@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enroll</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="enrollstudent.css">
+    <link rel="stylesheet" href="./dashboard.css">
+</head>
+<body>
+    <div class="stage">
+        <nav class="navbar-card" aria-label="Main navigation">
+            <a href="dashboard.html" class="brand-container" aria-label="Volexa home">
+                <div class="logo-icon"><i class="ph-bold ph-graduation-cap"></i></div>
+                <span class="logo-text">Volexa</span>
+            </a>
+
+            <div class="nav-menu">
+              
+            </div>
+
+            <div class="actions-container">
+                <button class="btn-premium" type="button">Dashboard</button>
+            </div>
+        </nav>
+    </div>
+
+    <main class="page-shell">
+        <div class="container">
+            <div class="header">
+                <div class="badge">Start Learning Today</div>
+                <h1>Enroll in Your Course</h1>
+                <p>Join thousands of learners advancing their skills with expert-led courses designed for real-world success.</p>
+            </div>
+
+            <form id="enrollmentForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label for="firstName">First Name <span class="required">*</span></label>
+                        <input type="text" id="firstName" name="firstName" placeholder="John" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name <span class="required">*</span></label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address <span class="required">*</span></label>
+                    <input type="email" id="email" name="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+                </div>
+
+                <div class="form-group">
+                    <label>Select Your Course <span class="required">*</span></label>
+                    <div class="course-grid" id="allcoursesCard">
+                        Loading courses...
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Previous Experience Level</label>
+                    <select id="experience" name="experience">
+                        <option value="">Select your experience level</option>
+                        <option value="beginner">Beginner - Just starting out</option>
+                        <option value="intermediate">Intermediate - Some experience</option>
+                        <option value="advanced">Advanced - Extensive experience</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Why do you want to take this course?</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Tell us about your learning goals and what you hope to achieve..."></textarea>
+                </div>
+                <label for="imageUpload">Upload Profile Pic</label>
+                <input type="file" id="imageUpload" name="image" accept="image/*">
+                <div class="checkbox-group">
+                    <input type="checkbox" id="newsletter" name="newsletter">
+                    <label for="newsletter">I'd like to receive updates about new courses, learning resources, and exclusive offers.</label>
+                </div>
+               
+                <button hidden type="button" id="viewCard" class="submit-btn">View Your Card <span>→</span></button>
+                <button type="submit" id="submit-btn" class="submit-btn">Complete Enrollment <span>→</span></button>
+                
+                <div class="success-message" id="successMessage">
+                    <i class="ph ph-check-circle" aria-hidden="true"></i> Enrollment successful! Check your email for next steps.
+                </div>
+                <p class="enrollment-error" id="enrollmentError" role="alert" hidden></p>
+            </form>
+        </div>
+    </main>
+    <div id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+            authDomain: "practiceall-71f28.firebaseapp.com",
+            databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+            projectId: "practiceall-71f28",
+            storageBucket: "practiceall-71f28.firebasestorage.app",
+            messagingSenderId: "807000937250",
+            appId: "1:807000937250:web:22d5f8c334447378738b7b"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
+
+    <script src="./enrollstudent.js"></script>
+    <script src="./dashboard.js" ></script>
+</body>
+</html>

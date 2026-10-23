@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student ID Card | Volexa</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            padding: 24px;
+            background: #f3f7fc;
+            color: #18304f;
+            font-family: Inter, "Segoe UI", sans-serif;
+        }
+
+        .id-card-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 0;
+            perspective: 1600px;
+        }
+
+        .card-wrapper {
+            position: relative;
+            width: min(430px, calc(100vw - 36px));
+            height: 270px;
+            transform-style: preserve-3d;
+            transition: transform .9s cubic-bezier(.2, .8, .2, 1);
+            cursor: pointer;
+        }
+
+        .card-wrapper.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .card-wrapper.pdf-mode {
+            display: flex;
+            height: auto;
+            flex-direction: column;
+            gap: 16px;
+            transform: none;
+        }
+
+        .id-card {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            border: 1px solid #e0e8f2;
+            border-radius: 18px;
+            color: #18304f;
+            background: linear-gradient(145deg, #fff 0%, #f8fbff 100%);
+            box-shadow: 0 20px 52px rgba(32, 67, 112, .16), inset 0 1px 0 #fff;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .pdf-mode .id-card {
+            position: relative;
+            inset: auto;
+            width: 100%;
+            height: 270px;
+            transform: none;
+            backface-visibility: visible;
+            -webkit-backface-visibility: visible;
+        }
+
+        .id-card::before {
+            position: absolute;
+            inset: 1px;
+            border: 1px solid rgba(29, 95, 191, .08);
+            border-radius: 17px;
+            content: "";
+            pointer-events: none;
+        }
+
+        .card-shine {
+            position: absolute;
+            top: -150px;
+            right: -100px;
+            width: 250px;
+            height: 500px;
+            transform: rotate(25deg);
+            background: linear-gradient(90deg, transparent, rgba(29, 95, 191, .06), transparent);
+            pointer-events: none;
+        }
+
+        .card-top {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 24px 27px 0;
+        }
+
+        .small-label {
+            display: block;
+            color: #1d5fbf;
+            font-size: 8px;
+            letter-spacing: 3px;
+        }
+
+        .card-top h2,
+        .back-header h2 {
+            margin: 4px 0 0;
+            font-size: 17px;
+            font-weight: 800;
+            letter-spacing: 3px;
+        }
+
+        .company-logo {
+            display: flex;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: #fff;
+            background: linear-gradient(135deg, #5b8acb, #1d5fbf);
+            box-shadow: 0 5px 16px rgba(29, 95, 191, .2);
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .profile-area {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            padding: 22px 27px;
+        }
+
+        .profile-image-box {
+            width: 105px;
+            height: 125px;
+            flex: 0 0 auto;
+            padding: 4px;
+            border-radius: 16px;
+            background: linear-gradient(135deg, #dce9fa, #5b8acb, #dce9fa);
+            box-shadow: 0 8px 22px rgba(32, 67, 112, .16);
+        }
+
+        .profile-image-box img,
+        .profile-initials {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            align-items: center;
+            justify-content: center;
+            border-radius: 13px;
+            background: #eaf2ff;
+            color: #1d5fbf;
+            font-size: 32px;
+            font-weight: 700;
+            object-fit: cover;
+        }
+
+        .profile-image-box img[hidden],
+        .profile-initials[hidden] {
+            display: none;
+        }
+
+        .user-info {
+            min-width: 0;
+        }
+
+        .user-info .label {
+            display: block;
+            margin-top: 5px;
+            color: #657791;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .user-info h1 {
+            overflow: hidden;
+            max-width: 240px;
+            margin: 2px 0 7px;
+            font-size: 21px;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .user-info p {
+            overflow: hidden;
+            max-width: 245px;
+            margin: 2px 0;
+            color: #385575;
+            font-size: 14px;
+            font-weight: 700;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-footer,
+        .back-footer {
+            position: absolute;
+            right: 27px;
+            bottom: 17px;
+            left: 27px;
+            display: flex;
+            justify-content: space-between;
+            color: #657791;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .back {
+            padding: 25px 27px;
+            transform: rotateY(180deg);
+        }
+
+        .back-pattern {
+            position: absolute;
+            top: -130px;
+            right: -130px;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(29, 95, 191, .12);
+            border-radius: 50%;
+            box-shadow: 0 0 0 25px rgba(29, 95, 191, .025), 0 0 0 50px rgba(29, 95, 191, .02);
+        }
+
+        .back-header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .back-header h2 {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .qr-section {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-top: 17px;
+        }
+
+        .qr-box {
+            display: flex;
+            width: 112px;
+            height: 112px;
+            flex: 0 0 auto;
+            align-items: center;
+            justify-content: center;
+            padding: 6px;
+            border-radius: 12px;
+            background: #fff;
+            box-shadow: 0 8px 24px rgba(32, 67, 112, .14);
+        }
+
+        #qrCode canvas,
+        #qrCode img {
+            display: block;
+            width: 100px;
+            height: 100px;
+        }
+
+        .card-details {
+            min-width: 0;
+            color: #657791;
+            font-size: 12px;
+            font-weight: 700;
+
+            line-height: 1.5;
+        }
+
+        .card-details p {
+            overflow: hidden;
+            margin: 3px 0;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .card-details strong {
+            color: #1d5fbf;
+            font-weight: 600;
+        }
+
+        .company-info {
+            position: absolute;
+            bottom: 39px;
+            left: 27px;
+        }
+
+        .company-info h3 {
+            margin: 0;
+            color: #18304f;
+            font-size: 12px;
+            letter-spacing: 2px;
+        }
+
+        .company-info p {
+            margin: 4px 0 0;
+            color: #657791;
+            font-size: 8px;
+        }
+
+        .back-footer {
+            color: #657791;
+            letter-spacing: 1.5px;
+        }
+
+        .flip-btn {
+            padding: 13px 25px;
+            border: 1px solid #1d5fbf;
+            border-radius: 7px;
+            color: #fff;
+            background: #1d5fbf;
+            box-shadow: 0 8px 22px rgba(29, 95, 191, .2);
+            cursor: pointer;
+            font-size: 11px;
+            letter-spacing: 2px;
+            transition: .3s;
+        }
+
+        .flip-btn:hover {
+            transform: translateY(-3px);
+            background: #174e9f;
+            box-shadow: 0 12px 28px rgba(29, 95, 191, .24);
+        }
+
+        .card-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .download-btn {
+            padding: 13px 25px;
+            border: 1px solid #dce5f0;
+            border-radius: 7px;
+            color: #1d5fbf;
+            background: #fff;
+            box-shadow: 0 8px 22px rgba(32, 67, 112, .1);
+            cursor: pointer;
+            font: inherit;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .download-btn:hover {
+            background: #eaf2ff;
+        }
+
+        .download-btn:disabled {
+            cursor: wait;
+            opacity: .65;
+        }
+
+        #cardStatus {
+            min-height: 1.5em;
+            margin: 16px 0 0;
+            color: #1d5fbf;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            body {
+                padding: 16px;
+            }
+
+            .card-wrapper {
+                height: 235px;
+            }
+
+            .card-wrapper.pdf-mode {
+                height: auto;
+            }
+
+            .id-card {
+                border-radius: 20px;
+            }
+
+            .pdf-mode .id-card {
+                height: 235px;
+            }
+
+            .card-top {
+                padding: 18px 20px 0;
+            }
+
+            .profile-image-box {
+                width: 80px;
+                height: 95px;
+            }
+
+            .profile-area {
+                gap: 14px;
+                padding: 17px 20px;
+            }
+
+            .user-info h1 {
+                max-width: 200px;
+                font-size: 17px;
+            }
+
+            .user-info p {
+                max-width: 200px;
+            }
+
+            .back {
+                padding: 18px 20px;
+            }
+
+            .qr-section {
+                gap: 12px;
+                margin-top: 14px;
+            }
+
+            .qr-box {
+                width: 96px;
+                height: 96px;
+            }
+
+            #qrCode canvas,
+            #qrCode img {
+                width: 84px;
+                height: 84px;
+            }
+
+            .company-info {
+                bottom: 34px;
+                left: 20px;
+            }
+
+            .card-footer,
+            .back-footer {
+                right: 20px;
+                left: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main class="id-card-section">
+        <div class="card-wrapper" id="cardWrapper">
+            <section class="id-card front" aria-label="Front of student ID card">
+                <div class="card-shine"></div>
+                <header class="card-top">
+                    <div>
+                        <span class="small-label">Volexa INSTITUTE</span>
+                        <h2>STUDENT ID</h2>
+                    </div>
+                    <!-- <div class="company-logo" aria-hidden="true">A</div> -->
+                </header>
+
+                <div class="profile-area">
+                    <div class="profile-image-box">
+                        <img id="cardImage" alt="Student profile photo" hidden>
+                        <div id="cardInitials" class="profile-initials" aria-hidden="true">?</div>
+                    </div>
+                    <div class="user-info">
+                        <span class="label">FULL NAME</span>
+                        <h1 id="cardName">Loading...</h1>
+                        <span class="label">EMAIL</span>
+                        <p id="cardEmail">Loading...</p>
+                        <span class="label">ROLL NUMBER</span>
+                        <p id="cardRoll">Loading...</p>
+                    </div>
+                </div>
+
+                <footer class="card-footer">
+                    <span>AUTHORIZED MEMBER</span>
+                    <span id="validYear"></span>
+                </footer>
+            </section>
+
+            <section class="id-card back" aria-label="Back of student ID card">
+                <div class="back-pattern"></div>
+                <header class="back-header">
+                    <div class="company-logo" aria-hidden="true">V</div>
+                    <div>
+                        <span class="small-label">OFFICIAL</span>
+                        <h2>IDENTITY CARD</h2>
+                    </div>
+                </header>
+
+                <div class="qr-section">
+                    <div id="qrCode" class="qr-box" role="img" aria-label="QR code containing the student's name, roll number, email and course"></div>
+                    <div class="card-details">
+                        <p><strong>COURSE</strong> <span id="cardCourse">Loading...</span></p>
+                        <p><strong>PHONE</strong> <span id="cardPhone">Loading...</span></p>
+                        <p><strong>EXPERIENCE</strong> <span id="cardExperience">Loading...</span></p>
+                        <p><strong>ENROLLED</strong> <span id="cardCreatedAt">Loading...</span></p>
+                    </div>
+                </div>
+
+                <div class="company-info">
+                    <h3>Volexa INSTITUTE</h3>
+                    <p id="cardMessage">Student learning record</p>
+                </div>
+
+                <footer class="back-footer">
+                    <span id="cardId">ID: --------</span>
+                    <span id="validFooter"></span>
+                </footer>
+            </section>
+        </div>
+
+        <div class="card-actions">
+            <button class="flip-btn" id="flipButton" type="button" aria-pressed="false">
+                ↻ FLIP CARD
+            </button>
+            <button class="download-btn" id="downloadButton" type="button">
+                Download PDF
+            </button>
+        </div>
+        <p id="cardStatus" role="status" aria-live="polite"></p>
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+            authDomain: "practiceall-71f28.firebaseapp.com",
+            databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+            projectId: "practiceall-71f28",
+            storageBucket: "practiceall-71f28.firebasestorage.app",
+            messagingSenderId: "807000937250",
+            appId: "1:807000937250:web:22d5f8c334447378738b7b"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./viewCard.js"></script>
+</body>
+</html>

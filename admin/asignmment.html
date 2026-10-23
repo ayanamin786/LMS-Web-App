@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f7fc">
+    <title>Create assignment | Volexa Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        :root {
+            --ink: #18304f;
+            --muted: #718198;
+            --blue: #1d5fbf;
+            --line: #e3eaf3;
+            --canvas: #f3f7fc;
+            --white: #fff;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: var(--canvas);
+            color: var(--ink);
+            font-family: Inter, "Segoe UI", Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        button, input, select, textarea { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        .layout { min-height: 100vh; }
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 5;
+            display: flex;
+            width: 252px;
+            flex-direction: column;
+            padding: 25px 17px 18px;
+            border-right: 1px solid var(--line);
+            background: var(--white);
+        }
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 7px 36px;
+            color: var(--ink);
+            text-decoration: none;
+        }
+        .brand-mark {
+            display: grid;
+            width: 41px;
+            height: 41px;
+            flex: 0 0 41px;
+            place-items: center;
+            border-radius: 11px;
+            background: var(--blue);
+            color: white;
+            font-size: 21px;
+        }
+        .brand strong { font-size: 17px; letter-spacing: -.04em; }
+        .brand small {
+            display: block;
+            margin-top: 3px;
+            color: #8795a8;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .13em;
+        }
+        .nav-label {
+            margin: 0 0 10px;
+            padding: 0 11px;
+            color: #9aa6b7;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .13em;
+        }
+        .nav-list { display: grid; gap: 5px; }
+        .nav-link {
+            display: flex;
+            min-height: 43px;
+            align-items: center;
+            gap: 12px;
+            padding: 0 12px;
+            border-radius: 8px;
+            color: #687990;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background .16s ease, color .16s ease;
+        }
+        .nav-link i { font-size: 18px; }
+        .nav-link:hover, .nav-link.active { background: #edf4ff; color: var(--blue); }
+        .sidebar-note {
+            margin-top: auto;
+            padding: 15px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            background: #f8faff;
+        }
+        .sidebar-note i { color: var(--blue); font-size: 19px; }
+        .sidebar-note strong { display: block; margin-top: 10px; font-size: 11px; }
+        .sidebar-note p {
+            margin: 6px 0 0;
+            color: var(--muted);
+            font-size: 10px;
+            line-height: 1.6;
+        }
+        .main { min-height: 100vh; margin-left: 252px; }
+        .topbar {
+            display: flex;
+            min-height: 73px;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 38px;
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,.88);
+        }
+        .crumb { color: #8795a8; font-size: 11px; }
+        .crumb span { margin: 0 8px; color: #c4ceda; }
+        .admin-chip { display: flex; align-items: center; gap: 9px; }
+        .admin-avatar {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            place-items: center;
+            border-radius: 50%;
+            background: #e9f1fc;
+            color: var(--blue);
+            font-size: 11px;
+            font-weight: 700;
+        }
+        .admin-chip strong { font-size: 11px; }
+        .content { width: min(1180px, 100%); margin: 0 auto; padding: 34px 38px 48px; }
+        .page-intro { margin-bottom: 24px; }
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin: 0 0 10px;
+            color: var(--blue);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        .page-intro h1 {
+            margin: 0;
+            font-size: clamp(27px, 3vw, 34px);
+            letter-spacing: -.055em;
+        }
+        .page-intro > p:last-child {
+            margin: 9px 0 0;
+            color: var(--muted);
+            font-size: 12px;
+            line-height: 1.6;
+        }
+        .workspace {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 295px;
+            align-items: start;
+            gap: 18px;
+        }
+        .form-card, .preview-card {
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            background: var(--white);
+            box-shadow: 0 6px 24px rgba(32, 67, 112, .035);
+        }
+        .form-card { padding: 26px; }
+        .form-section + .form-section { margin-top: 27px; padding-top: 23px; border-top: 1px solid #edf1f6; }
+        .section-heading {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            margin-bottom: 18px;
+        }
+        .section-icon {
+            display: grid;
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+            place-items: center;
+            border-radius: 9px;
+            background: #edf4ff;
+            color: var(--blue);
+            font-size: 17px;
+        }
+        .section-heading h2 { margin: 0; font-size: 13px; }
+        .section-heading p { margin: 4px 0 0; color: var(--muted); font-size: 10px; line-height: 1.5; }
+        .field-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+        .field { min-width: 0; }
+        .field.full { grid-column: 1 / -1; }
+        .field label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            margin-bottom: 7px;
+            color: #405570;
+            font-size: 11px;
+            font-weight: 650;
+        }
+        .required { color: #c14e54; }
+        .optional { margin-left: 3px; color: #9aa6b7; font-size: 9px; font-weight: 500; }
+        .field input, .field select, .field textarea {
+            width: 100%;
+            min-height: 41px;
+            padding: 10px 11px;
+            border: 1px solid #dfe7f0;
+            border-radius: 7px;
+            outline: 0;
+            background: #fff;
+            color: var(--ink);
+            font-size: 11px;
+            transition: border-color .15s ease, box-shadow .15s ease;
+        }
+        .field textarea { min-height: 100px; resize: vertical; line-height: 1.55; }
+        .field input::placeholder, .field textarea::placeholder { color: #a1adbb; }
+        .field input:focus, .field select:focus, .field textarea:focus {
+            border-color: #6d9bd4;
+            box-shadow: 0 0 0 3px rgba(29,95,191,.1);
+        }
+        .field-help { margin: 6px 0 0; color: #8795a8; font-size: 9px; line-height: 1.5; }
+        .target-card {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 12px;
+            border: 1px solid #e2eaf4;
+            border-radius: 8px;
+            background: #f9fbfe;
+        }
+        .target-card > i { margin-top: 1px; color: var(--blue); font-size: 16px; }
+        .target-copy { flex: 1; }
+        .target-copy strong { display: block; font-size: 10px; }
+        .target-copy p { margin: 4px 0 0; color: var(--muted); font-size: 9px; line-height: 1.5; }
+        .roster-count {
+            padding: 5px 7px;
+            border-radius: 20px;
+            background: #edf4ff;
+            color: var(--blue);
+            font-size: 9px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+        .form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-top: 25px;
+            padding-top: 19px;
+            border-top: 1px solid #edf1f6;
+        }
+        .quiet-note { display: flex; align-items: center; gap: 6px; color: #8795a8; font-size: 9px; }
+        .quiet-note i { color: #3f8c5b; font-size: 13px; }
+        .submit-button {
+            display: inline-flex;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 0 16px;
+            border: 0;
+            border-radius: 7px;
+            background: var(--blue);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .15s ease, transform .15s ease;
+        }
+        .submit-button:hover { transform: translateY(-1px); background: #174e9f; }
+        .submit-button:disabled { opacity: .65; cursor: wait; transform: none; }
+        .preview-card { position: sticky; top: 22px; padding: 19px; }
+        .preview-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            color: #7e8da2;
+            font-size: 9px;
+            font-weight: 700;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+        .preview-paper {
+            overflow: hidden;
+            border: 1px solid #e7edf5;
+            border-radius: 9px;
+            background: #fff;
+        }
+        .preview-banner { height: 7px; background: linear-gradient(90deg, #1d5fbf, #6ea0dc); }
+        .preview-body { padding: 16px; }
+        .preview-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 7px;
+            border-radius: 20px;
+            background: #edf4ff;
+            color: var(--blue);
+            font-size: 8px;
+            font-weight: 700;
+        }
+        .preview-body h3 {
+            margin: 13px 0 7px;
+            color: #263c59;
+            font-size: 15px;
+            line-height: 1.35;
+            overflow-wrap: anywhere;
+        }
+        .preview-description {
+            min-height: 36px;
+            margin: 0;
+            color: #78889d;
+            font-size: 9px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+        .preview-meta { display: grid; gap: 10px; margin-top: 16px; padding-top: 13px; border-top: 1px solid #edf1f6; }
+        .meta-line { display: flex; align-items: center; gap: 8px; color: #65758b; font-size: 9px; }
+        .meta-line i { color: #7190b8; font-size: 13px; }
+        .preview-footnote {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-top: 13px;
+            padding: 11px;
+            border-radius: 8px;
+            background: #f7f9fc;
+            color: #78889d;
+            font-size: 9px;
+            line-height: 1.55;
+        }
+        .preview-footnote i { margin-top: 1px; color: var(--blue); font-size: 13px; }
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 15;
+            display: flex;
+            max-width: min(430px, calc(100vw - 32px));
+            align-items: flex-start;
+            gap: 10px;
+            padding: 13px 15px;
+            border: 1px solid var(--line);
+            border-radius: 9px;
+            background: #fff;
+            box-shadow: 0 12px 35px rgba(32,67,112,.14);
+            color: var(--ink);
+            font-size: 11px;
+            line-height: 1.5;
+        }
+        .toast i { margin-top: 1px; color: #348254; font-size: 17px; }
+        .toast.error i { color: #c14e54; }
+        .toast[hidden] { display: none; }
+        @media (max-width: 1080px) {
+            .workspace { grid-template-columns: minmax(0, 1fr) 260px; }
+            .content { padding-right: 25px; padding-left: 25px; }
+        }
+        @media (max-width: 850px) {
+            .sidebar { position: relative; width: 100%; height: auto; padding: 13px 18px; border-right: 0; border-bottom: 1px solid var(--line); }
+            .brand { padding: 0; }
+            .nav-label, .sidebar-note { display: none; }
+            .nav-list { display: flex; gap: 4px; margin-top: 12px; overflow-x: auto; }
+            .nav-link { min-height: 35px; flex: 0 0 auto; padding: 0 10px; font-size: 10px; }
+            .nav-link i { font-size: 15px; }
+            .main { margin-left: 0; }
+            .topbar { min-height: 59px; padding: 0 20px; }
+            .content { padding-top: 25px; }
+        }
+        @media (max-width: 700px) {
+            .workspace { grid-template-columns: 1fr; }
+            .preview-card { position: static; }
+            .content { padding: 23px 17px 35px; }
+            .form-card { padding: 19px 16px; }
+            .field-grid { gap: 13px; }
+        }
+        @media (max-width: 480px) {
+            .field-grid { grid-template-columns: 1fr; }
+            .field.full { grid-column: auto; }
+            .form-actions { align-items: stretch; flex-direction: column; }
+            .submit-button { width: 100%; }
+            .topbar { padding: 0 16px; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar">
+            <a class="brand" href="./superadmin.html">
+                <span class="brand-mark"><i class="ph ph-graduation-cap" aria-hidden="true"></i></span>
+                <span><strong>Volexa Admin</strong><small>LEARNING ADMINISTRATION</small></span>
+            </a>
+            <p class="nav-label">WORKSPACE</p>
+            <nav class="nav-list" aria-label="Admin navigation">
+                <a class="nav-link" href="./superadmin.html"><i class="ph ph-squares-four" aria-hidden="true"></i> Dashboard</a>
+                <a class="nav-link" href="./students.html"><i class="ph ph-users-three" aria-hidden="true"></i> Students</a>
+                <a class="nav-link active" href="./asignmment.html" aria-current="page"><i class="ph ph-notebook" aria-hidden="true"></i> Assignments</a>
+                <a class="nav-link" href="./addcourses.html"><i class="ph ph-books" aria-hidden="true"></i> Courses</a>
+            </nav>
+            <div class="sidebar-note">
+                <i class="ph ph-lightbulb" aria-hidden="true"></i>
+                <strong>A thoughtful brief goes a long way</strong>
+                <p>Clear instructions and a realistic deadline help students focus on the learning.</p>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="crumb">Workspace <span>/</span> Assignments <span>/</span> New assignment</div>
+                <div class="admin-chip">
+                    <span class="admin-avatar">A</span>
+                    <strong>Administrator</strong>
+                </div>
+            </header>
+
+            <div class="content">
+                <section class="page-intro">
+                    <p class="eyebrow"><i class="ph ph-pencil-line" aria-hidden="true"></i> TEACHING TOOLS</p>
+                    <h1>Create an assignment</h1>
+                    <p>Set clear expectations, choose who it is for, and give your students room to do their best work.</p>
+                </section>
+
+                <div class="workspace">
+                    <form class="form-card" id="assignmentForm">
+                        <section class="form-section" aria-labelledby="details-heading">
+                            <div class="section-heading">
+                                <span class="section-icon"><i class="ph ph-text-aa" aria-hidden="true"></i></span>
+                                <div><h2 id="details-heading">Assignment details</h2><p>Give this piece of work a clear name and useful instructions.</p></div>
+                            </div>
+                            <div class="field-grid">
+                                <div class="field full">
+                                    <label for="assignmentTitle">Assignment title <span class="required">*</span></label>
+                                    <input id="assignmentTitle" name="title" type="text" maxlength="100" placeholder="e.g. Build a responsive portfolio page" required>
+                                </div>
+                                <div class="field full">
+                                    <label for="description">Instructions <span class="required">*</span></label>
+                                    <textarea id="description" name="description" maxlength="3000" placeholder="Explain what students need to do, what to submit, and any helpful requirements..." required></textarea>
+                                    <p class="field-help"><span id="descriptionCount">0</span>/3000 characters</p>
+                                </div>
+                                <div class="field">
+                                    <label for="course">Course <span class="required">*</span></label>
+                                    <input id="course" name="course" list="courseOptions" maxlength="100" placeholder="Choose or enter a course" required>
+                                    <datalist id="courseOptions"></datalist>
+                                    <p class="field-help">Choose a course with enrolled students.</p>
+                                </div>
+                                <div class="field">
+                                    <label for="rollNumber">Student roll number <span class="optional">OPTIONAL</span></label>
+                                    <input id="rollNumber" name="rollNumber" type="text" inputmode="numeric" pattern="[0-9]+" placeholder="Leave blank for whole course">
+                                    <p class="field-help">Enter a roll number to assign to one student only.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <section class="form-section" aria-labelledby="schedule-heading">
+                            <div class="section-heading">
+                                <span class="section-icon"><i class="ph ph-calendar-check" aria-hidden="true"></i></span>
+                                <div><h2 id="schedule-heading">Schedule & grading</h2><p>Let students know when it is due and how it will be marked.</p></div>
+                            </div>
+                            <div class="field-grid">
+                                <div class="field">
+                                    <label for="dueDate">Due date <span class="required">*</span></label>
+                                    <input id="dueDate" name="dueDate" type="date" required>
+                                </div>
+                                <div class="field">
+                                    <label for="points">Maximum points <span class="required">*</span></label>
+                                    <input id="points" name="points" type="number" min="1" max="10000" step="1" value="100" required>
+                                </div>
+                            </div>
+                        </section>
+
+                        <div class="form-section">
+                            <div class="target-card">
+                                <i class="ph ph-users-three" aria-hidden="true"></i>
+                                <div class="target-copy">
+                                    <strong id="targetSummary">Assignment will go to the selected course</strong>
+                                    <p id="targetHelp">Choose a course above. An individual roll number limits delivery to just that student.</p>
+                                </div>
+                                <span class="roster-count" id="rosterCount">Loading roster…</span>
+                            </div>
+                            <div class="form-actions">
+                                <span class="quiet-note"><i class="ph ph-shield-check" aria-hidden="true"></i> Students will see this in their learning portal.</span>
+                                <button class="submit-button" id="submitButton" type="submit">
+                                    <span>Publish assignment</span><i class="ph ph-arrow-right" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                    <aside class="preview-card" aria-label="Assignment preview">
+                        <div class="preview-label"><span>Student preview</span><i class="ph ph-eye" aria-hidden="true"></i></div>
+                        <div class="preview-paper">
+                            <div class="preview-banner"></div>
+                            <div class="preview-body">
+                                <span class="preview-tag"><i class="ph ph-notebook" aria-hidden="true"></i> ASSIGNMENT</span>
+                                <h3 id="previewTitle">Your assignment title</h3>
+                                <p class="preview-description" id="previewDescription">Your instructions will appear here so students know exactly where to begin.</p>
+                                <div class="preview-meta">
+                                    <div class="meta-line"><i class="ph ph-books" aria-hidden="true"></i><span id="previewCourse">Course not selected</span></div>
+                                    <div class="meta-line"><i class="ph ph-calendar-blank" aria-hidden="true"></i><span id="previewDue">No due date set</span></div>
+                                    <div class="meta-line"><i class="ph ph-star" aria-hidden="true"></i><span id="previewPoints">100 points</span></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="preview-footnote"><i class="ph ph-info" aria-hidden="true"></i><span>Preview updates as you fill in the assignment. Check the details before you publish.</span></div>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+        <i class="ph ph-check-circle" id="toastIcon" aria-hidden="true"></i>
+        <span id="toastMessage"></span>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-database-compat.js"></script>
+    <script>
+        const firebaseConfig = {
+            apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+            authDomain: "practiceall-71f28.firebaseapp.com",
+            databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+            projectId: "practiceall-71f28",
+            storageBucket: "practiceall-71f28.firebasestorage.app",
+            messagingSenderId: "807000937250",
+            appId: "1:807000937250:web:22d5f8c334447378738b7b"
+        };
+        firebase.initializeApp(firebaseConfig);
+    </script>
+   <script src="asignmment.js"></script>
+</body>
+</html>

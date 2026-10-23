@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="dashboard.css">
+
+</head>
+
+<body>
+    <div class="stage">
+        <nav class="navbar-card" id="navbar" aria-label="Main navigation">
+            <a href="#top" class="brand-container" aria-label="Volexa home">
+                <div class="logo-icon">
+                    <i class="ph-bold ph-graduation-cap"></i>
+                </div>
+                <span class="logo-text">Volexa</span>
+            </a>
+
+            <div class="nav-menu" aria-expanded="false">
+                <a href="lms.login.html" class="nav-link">Student portal</a>
+                <a href="#courses" class="nav-link">Courses</a>
+                <a href="#teachers" class="nav-link">Teachers</a>
+                <a href="#stories" class="nav-link">Success Stories</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+
+            <div class="actions-container">
+                <a class="btn-premium" href="#courses">Explore courses</a>
+                <button class="mobile-toggle" type="button" aria-label="Open navigation" aria-expanded="false">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <main class="page-shell" id="top">
+        <section class="homepage-hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="hero-kicker"><span></span> Volexa INSTITUTE · KARACHI</p>
+                <h1 id="hero-title">Learn a skill.<br><span>Change your future.</span></h1>
+                <p class="hero-description">Practical, instructor-led tech courses built to take you from curious beginner to confident professional.</p>
+                <div class="hero-actions">
+                    <a class="hero-primary" href="#courses">Find your course <i class="ph ph-arrow-right" aria-hidden="true"></i></a>
+                    <a class="hero-secondary" href="#teachers">Meet the instructors</a>
+                </div>
+                <div class="hero-proof"><i class="ph ph-seal-check" aria-hidden="true"></i> Learn by doing, with people who work in the field.</div>
+            </div>
+            <aside class="hero-note" aria-label="Learning at Volexa">
+                <div class="hero-note-icon"><i class="ph ph-student" aria-hidden="true"></i></div>
+                <p class="hero-note-label">A better way to learn</p>
+                <h2>Real skills.<br>Real guidance.</h2>
+                <div class="hero-note-rule"></div>
+                <p class="hero-note-copy">Small steps, hands-on projects and an instructor in your corner.</p>
+                <a href="#teachers">Get to know your teachers <i class="ph ph-arrow-up-right" aria-hidden="true"></i></a>
+                <span class="hero-note-index">01 / 03</span>
+            </aside>
+        </section>
+
+        <section class="dashboard-section tilt-wrap" id="courses">
+            <header class="tilt-head section-heading">
+                <div><span class="tilt-eyebrow">01 — FIND YOUR DIRECTION</span>
+                <h2>Courses that move you forward</h2></div>
+                <p>Choose a path that fits your interests. Every course is focused on practical skills you can put to work.</p>
+            </header>
+
+            <div class="tilt-row" id="tiltRow">
+                <article class="tcard">
+                    <div class="tcard-inner">
+                        <div class="tcard-media">
+                            <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="AI and Data Science course">
+                            <span class="tcard-tag">New</span>
+                        </div>
+                        <div class="tcard-body">
+                            <h2 class="tcard-title">AI & Data-Science</h2>
+                            <p class="tcard-sub">12 Months Course With Certificate</p>
+                            <div class="tcard-foot">
+                                <span class="tcard-price">&#8360; 1200 / mo</span>
+                                <button class="tcard-btn" onclick="window.location.replace('./studentEnroll.html')" >Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tcard">
+                    <div class="tcard-inner">
+                        <div class="tcard-media">
+                            <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Freelancing course">
+                            <span class="tcard-tag">Popular</span>
+                        </div>
+                        <div class="tcard-body">
+                            <h2 class="tcard-title">Freelancing</h2>
+                            <p class="tcard-sub">4 Months Course With Certificate</p>
+                            <div class="tcard-foot">
+                                <span class="tcard-price">&#8360; 1000 / mo</span>
+                                <button class="tcard-btn" onclick="window.location.replace('./studentEnroll.html')" >Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tcard">
+                    <div class="tcard-inner">
+                        <div class="tcard-media">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Cyber security course">
+                            <span class="tcard-tag">Limited</span>
+                        </div>
+                        <div class="tcard-body">
+                            <h2 class="tcard-title">Cyber Security</h2>
+                            <p class="tcard-sub">18 Months With Certificate</p>
+                            <div class="tcard-foot">
+                                <span class="tcard-price">&#8360; 2400 / mo</span>
+                                <button class="tcard-btn" onclick="window.location.replace('./studentEnroll.html')" >Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="tcard">
+                    <div class="tcard-inner">
+                        <div class="tcard-media">
+                            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Agentic AI course">
+                            <span class="tcard-tag">Pro</span>
+                        </div>
+                        <div class="tcard-body">
+                            <h2 class="tcard-title">Agentic AI</h2>
+                            <p class="tcard-sub">13 Months Course With Certificate</p>
+                            <div class="tcard-foot">
+                                <span class="tcard-price">&#8360; 1300 / mo</span>
+                                <button class="tcard-btn" onclick="window.location.replace('./studentEnroll.html')" >Enroll Now</button>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section teacher-section" id="teachers">
+            <header class="tilt-head section-heading">
+                <div><span class="tilt-eyebrow">02 — LEARN FROM THE FIELD</span>
+                <h2>People who know the work</h2></div>
+                <p>Get practical guidance from professionals who bring real experience into every lesson.</p>
+            </header>
+
+            <div class="teacher-grid">
+                <article class="teacher-card">
+                    <img src="../assets/sir-zubair.png" alt="Muhammad Zubair Minhas">
+                    <div class="teacher-card-body"><p>Software development</p><h3>Muhammad Zubair Minhas</h3><a href="./sirzubairprofile.html">View instructor <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+                </article>
+                <article class="teacher-card">
+                    <img src="../assets/sirsheraz.png" alt="Sheraz Ahmed Qureshi">
+                    <div class="teacher-card-body"><p>Data science</p><h3>Sheraz Ahmed Qureshi</h3><a href="./sirsherazprofile.html">View instructor <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+                </article>
+                <article class="teacher-card">
+                    <img src="../assets/sirnasir.png" alt="Nasir Hussain">
+                    <div class="teacher-card-body"><p>Cybersecurity</p><h3>Nasir Hussain</h3><a href="./sirnasirhussain.html">View instructor <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+                </article>
+                <article class="teacher-card">
+                    <img src="../assets/sirsaad.png" alt="Saad Ali">
+                    <div class="teacher-card-body"><p>AI &amp; automation</p><h3>Muhammad Saad Ali</h3><a href="./sirsaad.html">View instructor <i class="ph ph-arrow-right" aria-hidden="true"></i></a></div>
+                </article>
+            </div>
+        </section>
+
+        <section class="dashboard-section success-section" id="stories">
+            <header class="tilt-head section-head-center">
+                <span class="tilt-eyebrow">03 — STUDENT STORIES</span>
+                <h2>Students turning skills into success</h2>
+                <p>Real transformation stories from learners who built confidence, freelancing careers, and a brighter future.</p>
+            </header>
+
+            <div class="success-grid">
+                <article class="story-card">
+                    <div class="story-video">
+                        <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
+                            <source src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-badge">Freelancing</div>
+                        <h3>Hammad started freelancing within 4 months.</h3>
+                        <p>From earning nothing online to landing consistent client work in design and web development.</p>
+                        <div class="story-meta">
+                            <span>+4.8x income</span>
+                            <span>Remote jobs</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-video">
+                        <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80">
+                            <source src="https://videos.pexels.com/video-files/855078/855078-hd_1920_1080_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-badge">AI & Data</div>
+                        <h3>Maryam became an AI and analytics specialist.</h3>
+                        <p>She built a strong portfolio, learned Python automation, and secured a data-focused role.</p>
+                        <div class="story-meta">
+                            <span>Career switch</span>
+                            <span>AI projects</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="story-card">
+                    <div class="story-video">
+                        <video controls playsinline preload="metadata" poster="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80">
+                            <source src="https://videos.pexels.com/video-files/853889/853889-hd_1920_1080_25fps.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                    <div class="story-body">
+                        <div class="story-badge">Cybersecurity</div>
+                        <h3>Ali built a solid cybersecurity foundation.</h3>
+                        <p>He worked through guided labs, gained practical skills, and moved toward a more confident career path.</p>
+                        <div class="story-meta">
+                            <span>Hands-on labs</span>
+                            <span>Career growth</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer" id="contact">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <div class="logo-icon footer-logo">
+                    <i class="ph-bold ph-graduation-cap"></i>
+                </div>
+                <h3>Volexa</h3>
+                <p>Helping students turn curiosity into skills, confidence, and career momentum through practical tech education.</p>
+            </div>
+
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <a href="#courses">Courses</a>
+                <a href="#teachers">Teachers</a>
+                <a href="#stories">Success Stories</a>
+                <a href="#top">Home</a>
+            </div>
+
+            <div class="footer-links contact-links">
+                <h4>Get in touch</h4>
+                <a href="mailto:hello@Volexa.studio">hello@Volexa.studio</a>
+                <a href="tel:+923001234567">+92 300 1234567</a>
+                <a href="#">Karachi, Pakistan</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 Volexa Institute. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="./dashboard.js"></script>
+</body>
+</html>

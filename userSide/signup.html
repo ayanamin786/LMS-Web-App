@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp Page</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    
+    <div id="toastContainer"></div>
+    
+
+
+<div class="container" id="container">
+
+	<div class="form-container sign-up-container">
+    <form>
+        <h1>Create Account</h1>
+
+        <span>or use your email for registration</span>
+
+        <input id="username" type="text" placeholder="Name" />
+
+        <input id="semail" type="email" placeholder="Email" />
+
+        <input id="spassword" type="password" placeholder="Password" />
+
+        <button type="button" onclick="signUp()">Sign Up</button>
+    </form>
+</div>
+
+	<div class="form-container sign-in-container">
+		<form >
+			<h1>Sign in</h1>
+			
+			<span>or use your account</span>
+			<input id="email" type="email" placeholder="Email" />
+			<input id="password" type="password" placeholder="Password" />
+			<a href="#">Forgot your password?</a>
+			<button type="button" onclick="signIn()" >Sign In</button>
+		</form>
+	</div>
+	<div class="overlay-container">
+		<div class="overlay">
+			<div class="overlay-panel overlay-left">
+				<h1>Welcome Back!</h1>
+				<p>To keep connected with us please login with your personal info</p>
+				<button class="ghost" id="signin">Sign In</button>
+			</div>
+			<div class="overlay-panel overlay-right">
+				<h1>Hello, Friend!</h1>
+				<p>Enter your personal details and start journey with us</p>
+				<button class="ghost" id="signup">Sign Up</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+ <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js"></script>
+    
+
+    <script>
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+  authDomain: "practiceall-71f28.firebaseapp.com",
+  databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+  projectId: "practiceall-71f28",
+  storageBucket: "practiceall-71f28.firebasestorage.app",
+  messagingSenderId: "807000937250",
+  appId: "1:807000937250:web:22d5f8c334447378738b7b"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+
+
+<script src="signup.js"></script>
+<script src="login.js"></script>
+<script src="./animate.js"></script>
+</body>
+</html>

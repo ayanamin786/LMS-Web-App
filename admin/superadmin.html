@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <link rel="stylesheet" href="superadmin.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <div class="logo-box"><i class="ph ph-graduation-cap" aria-hidden="true"></i></div>
+
+                <div>
+                    <h2>Volexa<span> Admin</span></h2>
+                    <p>Learning administration</p>
+                </div>
+            </div>
+
+            <div class="menu-title">MAIN MENU</div>
+
+            <nav class="menu">
+
+                <a href="#" class="menu-item active">
+                    <span class="icon"><i class="ph ph-squares-four" aria-hidden="true"></i></span>
+                    <span>Dashboard</span>
+                </a>
+
+                <a href="./students.html" class="menu-item">
+                    <span class="icon"><i class="ph ph-users-three" aria-hidden="true"></i></span>
+                    <span>Students</span>
+                    <span id="ttluser" class="badge">0</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="icon"><i class="ph ph-kanban" aria-hidden="true"></i></span>
+                    <span>Projects</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="icon"><i class="ph ph-chart-line-up" aria-hidden="true"></i></span>
+                    <span>Analytics</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="icon"><i class="ph ph-receipt" aria-hidden="true"></i></span>
+                    <span>Orders</span>
+                </a>
+
+                <div class="menu-title">MANAGEMENT</div>
+
+                <a href="#" class="menu-item">
+                    <span class="icon"><i class="ph ph-gear" aria-hidden="true"></i></span>
+                    <span>Settings</span>
+                </a>
+
+                <a href="#" class="menu-item">
+                    <span class="icon"><i class="ph ph-question" aria-hidden="true"></i></span>
+                    <span>Support</span>
+                </a>
+
+            </nav>
+
+            <div class="sidebar-bottom">
+
+                <div class="upgrade-box">
+                    <div class="upgrade-icon"><i class="ph ph-sparkle" aria-hidden="true"></i></div>
+
+                    <h3>Upgrade Plan</h3>
+
+                    <p>
+                        Unlock advanced features and get more control.
+                    </p>
+
+                    <!-- <button>Upgrade Now</button> -->
+                </div>
+
+                <div class="admin-profile">
+
+                    <div class="profile-image">
+                        TA
+                    </div>
+
+                    <div class="profile-info">
+                        <h4>Admin User</h4>
+                        <p>Administrator</p>
+                    </div>
+
+                    <span class="profile-more"><i class="ph ph-dots-three" aria-hidden="true"></i></span>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+        <main class="main">
+
+            <header class="topbar">
+
+                <div class="top-left">
+
+                    <button class="mobile-menu" aria-label="Open navigation"><i class="ph ph-list" aria-hidden="true"></i></button>
+
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p>Welcome back, Admin</p>
+                    </div>
+
+                </div>
+
+
+                <div class="top-right">
+
+                    <div class="search">
+                        <span><i class="ph ph-magnifying-glass" aria-hidden="true"></i></span>
+                        <input type="text" placeholder="Search anything...">
+                    </div>
+
+                    <button class="theme-button" id="themeButton">
+                        <i class="ph ph-moon" aria-hidden="true"></i>
+                    </button>
+
+                    <button class="notification">
+                        <i class="ph ph-bell" aria-hidden="true"></i>
+                        <span></span>
+                    </button>
+
+                    <div class="top-profile">
+                        <div class="profile-image">
+                            TA
+                        </div>
+                    </div>
+
+                </div>
+
+            </header>
+
+
+            <section class="content">
+
+                <div class="page-heading">
+
+                    <div>
+                        <h2>Overview</h2>
+                        <p>Here's what's happening with your business today.</p>
+                    </div>
+
+                    <button class="date-button">
+                        <span><i class="ph ph-calendar-blank" aria-hidden="true"></i></span>
+                        Sep 14, 2026
+                    </button>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon users-icon"><i class="ph ph-users-three" aria-hidden="true"></i></div>
+
+                            <div class="growth positive">
+                                ↑ 12.5%
+                            </div>
+                        </div>
+
+                        <p>Total Students</p>
+                        <h3 id="ttlusers" >0</h3>
+
+                       
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon revenue-icon"><i class="ph ph-chalkboard-teacher" aria-hidden="true"></i></div>
+
+                            <div class="growth positive">
+                                ↑ 8.2%
+                            </div>
+                        </div>
+
+                        <p>Total Tainers</p>
+                        <h3>4</h3>
+
+                      
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon order-icon"><i class="ph ph-notebook" aria-hidden="true"></i></div>
+
+                            <div class="growth positive">
+                                ↑ 5.7%
+                            </div>
+                        </div>
+
+                        <p>Total Quizes</p>
+                        <h3>0</h3>
+
+                     
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-top">
+                            <div class="stat-icon project-icon"><i class="ph ph-clipboard-text" aria-hidden="true"></i></div>
+
+                            <div class="growth negative">
+                                ↓ 2.4%
+                            </div>
+                        </div>
+
+                        <p>Total Assigments</p>
+                        <h3>0</h3>
+
+                       
+
+                    </div>
+
+                </div>
+
+
+                <div class="dashboard-grid">
+
+
+                    <div class="card revenue-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Revenue Overview</h3>
+                                <p>Monthly revenue performance</p>
+                            </div>
+
+                            <select>
+                                <option>Last 7 months</option>
+                                <option>Last 6 months</option>
+                                <option>Last 12 months</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="revenue-number">
+                            <strong>$48,290</strong>
+                            <span>↑ 18.4%</span>
+                        </div>
+
+
+                        <div class="chart">
+
+                            <div class="chart-y">
+                                <span>$50k</span>
+                                <span>$40k</span>
+                                <span>$30k</span>
+                                <span>$20k</span>
+                                <span>$10k</span>
+                                <span>$0</span>
+                            </div>
+
+
+                            <div class="chart-area">
+
+                                <div class="grid-line line1"></div>
+                                <div class="grid-line line2"></div>
+                                <div class="grid-line line3"></div>
+                                <div class="grid-line line4"></div>
+                                <div class="grid-line line5"></div>
+
+
+                                <div class="bars">
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-one"></div>
+                                        <span>Mar</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-two"></div>
+                                        <span>Apr</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-three"></div>
+                                        <span>May</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-four"></div>
+                                        <span>Jun</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-five"></div>
+                                        <span>Jul</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-six"></div>
+                                        <span>Aug</span>
+                                    </div>
+
+                                    <div class="bar-item">
+                                        <div class="bar bar-seven"></div>
+                                        <span>Sep</span>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card activity-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Recent Activity</h3>
+                                <p>Latest updates</p>
+                            </div>
+
+                            <button class="more-button" aria-label="More options"><i class="ph ph-dots-three" aria-hidden="true"></i></button>
+
+                        </div>
+
+
+                        <div class="activities">
+
+                            <div class="activity">
+
+                                <div class="activity-icon blue"><i class="ph ph-user-plus" aria-hidden="true"></i></div>
+
+                                <div class="activity-content">
+                                    <h4>New user registered</h4>
+                                    <p>Ahmed joined the platform</p>
+                                    <span>5 minutes ago</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity">
+
+                                <div class="activity-icon green"><i class="ph ph-check-circle" aria-hidden="true"></i></div>
+
+                                <div class="activity-content">
+                                    <h4>Payment received</h4>
+                                    <p>Order #45892 completed</p>
+                                    <span>24 minutes ago</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity">
+
+                                <div class="activity-icon orange"><i class="ph ph-kanban" aria-hidden="true"></i></div>
+
+                                <div class="activity-content">
+                                    <h4>Project updated</h4>
+                                    <p>Website project was updated</p>
+                                    <span>1 hour ago</span>
+                                </div>
+
+                            </div>
+
+
+                            <div class="activity">
+
+                                <div class="activity-icon purple"><i class="ph ph-star" aria-hidden="true"></i></div>
+
+                                <div class="activity-content">
+                                    <h4>New review received</h4>
+                                    <p>Someone left a 5-star review</p>
+                                    <span>2 hours ago</span>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="bottom-grid">
+
+
+                    <div class="card users-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Recent Users</h3>
+                                <p>Latest registered users</p>
+                            </div>
+
+                            <button class="view-button">
+                                View All →
+                            </button>
+
+                        </div>
+
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+
+                                    <tr>
+                                        <th>User</th>
+                                        <th>Status</th>
+                                        <th>Joined</th>
+                                        <th>Plan</th>
+                                    </tr>
+
+                                </thead>
+
+
+                                <tbody>
+
+                                    <tr>
+
+                                        <td>
+                                            <div class="user-cell">
+
+                                                <div class="user-avatar avatar-one">
+                                                    AK
+                                                </div>
+
+                                                <div>
+                                                    <strong>Ahmed Khan</strong>
+                                                    <span>ahmed@example.com</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <span class="status active-status">
+                                                Active
+                                            </span>
+                                        </td>
+
+                                        <td>Sep 14, 2026</td>
+
+                                        <td>
+                                            <span class="plan premium">
+                                                Premium
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <div class="user-cell">
+
+                                                <div class="user-avatar avatar-two">
+                                                    SA
+                                                </div>
+
+                                                <div>
+                                                    <strong>Sara Ali</strong>
+                                                    <span>sara@example.com</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <span class="status active-status">
+                                                Active
+                                            </span>
+                                        </td>
+
+                                        <td>Sep 13, 2026</td>
+
+                                        <td>
+                                            <span class="plan basic">
+                                                Basic
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <div class="user-cell">
+
+                                                <div class="user-avatar avatar-three">
+                                                    HM
+                                                </div>
+
+                                                <div>
+                                                    <strong>Hassan Malik</strong>
+                                                    <span>hassan@example.com</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <span class="status pending-status">
+                                                Pending
+                                            </span>
+                                        </td>
+
+                                        <td>Sep 12, 2026</td>
+
+                                        <td>
+                                            <span class="plan premium">
+                                                Premium
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+
+                                    <tr>
+
+                                        <td>
+                                            <div class="user-cell">
+
+                                                <div class="user-avatar avatar-four">
+                                                    ZA
+                                                </div>
+
+                                                <div>
+                                                    <strong>Zara Ahmed</strong>
+                                                    <span>zara@example.com</span>
+                                                </div>
+
+                                            </div>
+                                        </td>
+
+                                        <td>
+                                            <span class="status active-status">
+                                                Active
+                                            </span>
+                                        </td>
+
+                                        <td>Sep 11, 2026</td>
+
+                                        <td>
+                                            <span class="plan basic">
+                                                Basic
+                                            </span>
+                                        </td>
+
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="card progress-card">
+
+                        <div class="card-header">
+
+                            <div>
+                                <h3>Project Progress</h3>
+                                <p>Current project status</p>
+                            </div>
+
+                            <button class="more-button" aria-label="More options"><i class="ph ph-dots-three" aria-hidden="true"></i></button>
+
+                        </div>
+
+
+                        <div class="project-list">
+
+
+                            <div class="project">
+
+                                <div class="project-info">
+
+                                    <div>
+                                        <strong>Website Redesign</strong>
+                                        <span>12 tasks remaining</span>
+                                    </div>
+
+                                    <b>85%</b>
+
+                                </div>
+
+                                <div class="progress">
+                                    <div style="width: 85%"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="project">
+
+                                <div class="project-info">
+
+                                    <div>
+                                        <strong>Mobile Application</strong>
+                                        <span>8 tasks remaining</span>
+                                    </div>
+
+                                    <b>68%</b>
+
+                                </div>
+
+                                <div class="progress">
+                                    <div style="width: 68%"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="project">
+
+                                <div class="project-info">
+
+                                    <div>
+                                        <strong>Marketing Campaign</strong>
+                                        <span>5 tasks remaining</span>
+                                    </div>
+
+                                    <b>52%</b>
+
+                                </div>
+
+                                <div class="progress">
+                                    <div style="width: 52%"></div>
+                                </div>
+
+                            </div>
+
+
+                            <div class="project">
+
+                                <div class="project-info">
+
+                                    <div>
+                                        <strong>Brand Identity</strong>
+                                        <span>2 tasks remaining</span>
+                                    </div>
+
+                                    <b>92%</b>
+
+                                </div>
+
+                                <div class="progress">
+                                    <div style="width: 92%"></div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js"></script>
+    
+
+    <script>
+
+        const firebaseConfig = {
+  apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+  authDomain: "practiceall-71f28.firebaseapp.com",
+  databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+  projectId: "practiceall-71f28",
+  storageBucket: "practiceall-71f28.firebasestorage.app",
+  messagingSenderId: "807000937250",
+  appId: "1:807000937250:web:22d5f8c334447378738b7b"
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+    </script>
+
+    <script>
+
+        const themeButton = document.getElementById("themeButton");
+
+        themeButton.addEventListener("click", function () {
+
+            document.body.classList.toggle("light-mode");
+
+            if (document.body.classList.contains("light-mode")) {
+                themeButton.innerHTML = '<i class="ph ph-sun" aria-hidden="true"></i>';
+            } else {
+                themeButton.innerHTML = '<i class="ph ph-moon" aria-hidden="true"></i>';
+            }
+
+        });
+
+
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const sidebar = document.querySelector(".sidebar");
+
+        mobileMenu.addEventListener("click", function () {
+            sidebar.classList.toggle("show");
+        });
+
+    </script>
+
+  <script src="./superadmin.js"></script>
+
+</body>
+</html>

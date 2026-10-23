@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student sign in | Volexa</title>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="stylesheet" href="lms.login.css">
+</head>
+<body>
+    <main class="login-card">
+        <a class="login-brand" href="dashboard.html">
+            <span class="brand-mark"><i class="ph-bold ph-graduation-cap" aria-hidden="true"></i></span>
+            <span>Volexa</span>
+        </a>
+        <p class="login-eyebrow">YOUR LEARNING SPACE</p>
+        <h1>Good to have<br>you back.</h1>
+        <p class="login-intro">Enter your roll number to open your personal student portal.</p>
+
+        <form id="loginForm">
+            <label for="roll">Roll number</label>
+            <input
+                type="text"
+                id="roll"
+                inputmode="numeric"
+                autocomplete="username"
+                required
+                placeholder="e.g. 123123"
+            >
+            <p class="field-note"><i class="ph ph-lock-key" aria-hidden="true"></i> Your personal learning details are only shown inside your portal.</p>
+            <button type="submit" id="login">
+                <span>Open my portal</span>
+                <i class="ph ph-arrow-right" aria-hidden="true"></i>
+            </button>
+        </form>
+
+        <a class="back-link" href="dashboard.html"><i class="ph ph-arrow-left" aria-hidden="true"></i> Back to Volexa</a>
+    </main>
+    <div id="toastContainer"></div>
+
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-app-compat.js" ></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-auth-compat.js" ></script>
+<script src="https://www.gstatic.com/firebasejs/12.18.0/firebase-database-compat.js" ></script>
+
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBjCOdS9I2W9T1hxuE_VLvT53E6XMZuPI8",
+    authDomain: "practiceall-71f28.firebaseapp.com",
+    databaseURL: "https://practiceall-71f28-default-rtdb.firebaseio.com",
+    projectId: "practiceall-71f28",
+    storageBucket: "practiceall-71f28.firebasestorage.app",
+    messagingSenderId: "807000937250",
+    appId: "1:807000937250:web:22d5f8c334447378738b7b"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+    
+</script>
+
+<script src="lms.login.js"></script>
+</body>
+</html>
